@@ -23,8 +23,9 @@ To subsequently install the module, do:
    sudo make install
 
 You may want to have the module automatically built and installed each time you
-update your kernel through you rpackage manager.
+update your kernel through your package manager.
 To facilitate this, convenience build targets for dkms are present.
+
 To register this module with dkms and install it, do:
    sudo make dkms
 If you're not happy with it, you can remove it again with:
