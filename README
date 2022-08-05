@@ -1,0 +1,38 @@
+This is my ugly workaround for a brightness issue present in laptops with OLED screens.
+
+On certain laptops with display brightness controlled by intel_backlight,
+when setting the brightness to 0 through the sysfs interface,
+which is also used by several userland applications, the screen turns off.
+Then when trying to turn it back on with the brightness controls, it does not turn on again.
+
+The issue seems to be related to OLED screens. Models found to be affected so far:
+ - Dell XPS13 9310
+ - Dell XPS15 9510
+ - Xiaomi Book Pro 14
+
+Interesting bug reports:
+ - https://gitlab.freedesktop.org/drm/intel/-/issues/3657
+ - https://gitlab.freedesktop.org/drm/intel/-/issues/4949
+
+This workaround comes in the form of a module that hooks into the kernel,
+where it changes the brightness argument to 1 in case a 0 was passed.
+
+To build this module, simply do:
+   make
+To subsequently install the module, do:
+   sudo make install
+
+You may want to have the module automatically built and installed each time you
+update your kernel through you rpackage manager.
+To facilitate this, convenience build targets for dkms are present.
+To register this module with dkms and install it, do:
+   sudo make dkms
+If you're not happy with it, you can remove it again with:
+   sudo make dkms_remove
+
+Once installed, you should be able to load the module with:
+   sudo modprobe intel_backlight_fix
+At this point, the brighness issue should be fixed for your screen.
+
+Finally, in order to have the module loaded automatically on startup,
+you may add it to /etc/modules.
