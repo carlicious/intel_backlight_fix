@@ -36,5 +36,5 @@ dkms:
 
 dkms_remove:
 	dkms uninstall intel_backlight_fix/1.0 || true
-	dkms remove intel_backlight_fix/1.0
+	dkms remove intel_backlight_fix/1.0 --all
 	rm -rf /usr/src/intel_backlight_fix-1.0
