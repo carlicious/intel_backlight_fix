@@ -9,6 +9,7 @@ The issue seems to be related to OLED screens. Models found to be affected so fa
  - Dell XPS13 9310
  - Dell XPS15 9510
  - Xiaomi Book Pro 14
+ - Lenovo X1 Carbon Gen 10
 
 Interesting bug reports:
  - https://gitlab.freedesktop.org/drm/intel/-/issues/3657
